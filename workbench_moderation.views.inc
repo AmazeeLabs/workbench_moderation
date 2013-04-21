@@ -211,3 +211,12 @@ function workbench_moderation_views_data() {
 
   return $data;
 }
+/**
+ * Implements hook_views_query_alter().
+ */
+function workbench_moderation_views_query_alter(&$view, &$query) {
+  if ($view->name == 'workbench_moderation') {
+    $query->table_queue['node_node_revision']['join']->left_field = 'nid';
+    $query->table_queue['node_node_revision']['join']->field = 'nid';
+  }
+}
