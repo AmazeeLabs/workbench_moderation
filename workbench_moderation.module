@@ -877,7 +877,10 @@ function workbench_moderation_form_node_form_alter(&$form, $form_state) {
   // Users can not choose to publish content; content can only be published by
   // setting the content's moderation state to "Published".
   $form['options']['status']['#access'] = FALSE;
-  $form['actions']['submit']['#submit'][] = 'workbench_moderation_node_form_submit';
+  // Add the submit handler only if we are not on a wizard page.
+  if (!module_exists('wizards') || !wizards_check_if_wizard_page()) {
+    $form['actions']['submit']['#submit'][] = 'workbench_moderation_node_form_submit';
+  }
   workbench_moderation_messages('edit', $form['#node']);
 }
 
