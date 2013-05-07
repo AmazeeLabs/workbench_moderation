@@ -303,6 +303,6 @@ function workbench_moderation_node_unpublish_form_submit($form, &$form_state) {
   // @TODO: do we trust node_save() here?
   node_save($live_revision);
 
-  drupal_set_message(t('The live revision of this content has been unpublished.'));
+  //drupal_set_message(t('The live revision of this content has been unpublished.'));
   $form_state['redirect'] ="node/{$node->nid}/moderation";
 }
