@@ -707,7 +707,9 @@ function workbench_moderation_node_update($node) {
   // state has changed.
   if (!empty($node->revision) || $node->workbench_moderation_state_current != $node->workbench_moderation_state_new) {
     // Update attached fields.
-    field_attach_update('node', $node);
+    // Why? the node_save() already makes this call. This takes lots of time.
+    // For the moment, we disable this, until we find any side-effects.
+    //field_attach_update('node', $node);
     // Moderate the node.
     workbench_moderation_moderate($node, $node->workbench_moderation_state_new);
   }
