@@ -695,19 +695,19 @@ function workbench_moderation_node_update($node) {
   // state has changed.
   if (!empty($node->revision) || $node->workbench_moderation_state_current != $node->workbench_moderation_state_new) {
     // Update attached fields.
-    // field_attach_update('node', $node);
+    field_attach_update('node', $node);
 
     // This should solve the issue in http://jira.amazeelabs.com/browse/SOWEB-1044
     // Until the wm will use the drafty module, which is supposed to fix the
     // concurrency issues, we update the attached fields for the published node
     // if the current revision is not the one which should be published.
-    if (!empty($node->workbench_moderation['published']) && $node->workbench_moderation['published']->vid != $node->vid) {
+    /*if (!empty($node->workbench_moderation['published']) && $node->workbench_moderation['published']->vid != $node->vid) {
       $published_node = node_load($node->nid, $node->workbench_moderation['published']->vid, TRUE);
       field_attach_update('node', $published_node);
     }
     else {
       field_attach_update('node', $node);
-    }
+    }*/
 
     // Moderate the node.
     workbench_moderation_moderate($node, $node->workbench_moderation_state_new);
