@@ -1,0 +1,17 @@
+Idiff --git a/workbench_moderation.module b/workbench_moderation.module
+index 26ea794..96bbc1e 100644
+--- a/workbench_moderation.module
++++ b/workbench_moderation.module
+@@ -1756,7 +1756,11 @@ function workbench_moderation_store($node) {
+     watchdog('Workbench moderation', 'Failed to save node revision: node not passed to shutdown function.', array(), WATCHDOG_NOTICE);
+     return;
+   }
+-  watchdog('Workbench moderation', 'Saved node revision: %node as live version for node %live.', array('%node' => $node->vid, '%live' => $node->nid), WATCHDOG_NOTICE, l($node->title, 'node/' . $node->nid));
++  watchdog('Workbench moderation', 'Saved node revision: %node as live version for node %live.', 
++    array('%node' => $node->vid, '%live' => $node->nid), 
++    WATCHDOG_NOTICE, 
++    l(t('view'), 'node/' . $node->nid, array('alias' => TRUE))
++  );
+ 
+   // If we are saving a published node, work from the live revision, otherwise
+   // make sure that the entry in the {node} table points to the current
