@@ -21,3 +21,7 @@ files[] = tests/workbench_moderation.node_access.test
 files[] = tests/workbench_moderation.transition.test
 
 dependencies[] = drafty
+
+version = "7.x-3.0"
+project = "workbench_moderation"
+datestamp = "1478119457"
